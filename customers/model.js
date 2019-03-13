@@ -1,7 +1,11 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../db')
-
+const Company = require("../companies/model")
 const Customer = sequelize.define('customers', {
+  companyId: {
+    type: Sequelize.INTEGER,
+    field: 'company_id'
+  },
   firstName: {
     type: Sequelize.STRING,
     field: 'first_name',
@@ -32,5 +36,6 @@ const Customer = sequelize.define('customers', {
   timestamps: false,
   tableName: 'customers'
 })
+Customer.belongsTo(Company)
 
 module.exports = Customer
